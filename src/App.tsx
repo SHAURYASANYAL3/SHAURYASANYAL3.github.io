@@ -1,3 +1,5 @@
+import { FloatingNav } from './components/FloatingNav';
+import { LoadingExperience } from './components/LoadingExperience';
 import { HeroSection } from './sections/HeroSection';
 import { MarqueeSection } from './sections/MarqueeSection';
 import { AboutSection } from './sections/AboutSection';
@@ -6,13 +8,17 @@ import { ProjectsSection } from './sections/ProjectsSection';
 
 function App() {
   return (
-    <main className="bg-bg min-h-screen font-sans text-secondary">
-      <HeroSection />
-      <MarqueeSection />
-      <AboutSection />
-      <ServicesSection />
-      <ProjectsSection />
-    </main>
+    <>
+      <LoadingExperience />
+      <FloatingNav />
+      <main className="bg-bg min-h-screen font-sans text-secondary">
+        <HeroSection />
+        <MarqueeSection />
+        <AboutSection />
+        <ServicesSection />
+        <ProjectsSection />
+      </main>
+    </>
   );
 }
 

@@ -1,48 +1,94 @@
-import { FadeIn } from '../components/FadeIn';
-import { Magnet } from '../components/Magnet';
-import { ContactButton } from '../components/ContactButton';
+import { useEffect, useState } from 'react';
+import { AnimatePresence, motion } from 'framer-motion';
+import { ArrowUpRight } from 'lucide-react';
+import { profile } from '../data/profile';
+import { socials } from '../data/social';
+import { OrbitingConstellation } from '../components/OrbitingConstellation';
+
+const PLACEHOLDER = '__PLACEHOLDER__';
+
+function RotatingRole() {
+  const [index, setIndex] = useState(0);
+
+  useEffect(() => {
+    const id = window.setInterval(() => setIndex((v) => (v + 1) % profile.roles.length), 2400);
+    return () => window.clearInterval(id);
+  }, []);
+
+  return (
+    <span className="relative inline-flex h-[1.5em] overflow-hidden align-bottom">
+      <AnimatePresence mode="wait" initial={false}>
+        <motion.span
+          key={profile.roles[index]}
+          initial={{ y: '110%', opacity: 0 }}
+          animate={{ y: '0%', opacity: 1 }}
+          exit={{ y: '-110%', opacity: 0 }}
+          transition={{ duration: 0.32, ease: [0.25, 0.1, 0.25, 1] }}
+          className="text-accent"
+        >
+          {profile.roles[index]}
+        </motion.span>
+      </AnimatePresence>
+    </span>
+  );
+}
 
 export function HeroSection() {
+  const github = socials.find((s) => s.platform === 'github' && s.url !== PLACEHOLDER);
+  // LinkedIn / SpigotMC urls are placeholders in social.ts: skip rendering until real.
+
   return (
-    <section className="h-screen flex flex-col overflow-x-clip relative">
-      <FadeIn delay={0} y={-20} as="nav">
-        <nav className="flex justify-between items-center px-6 md:px-10 pt-6 md:pt-8 text-[#D7E2EA] font-medium uppercase tracking-wider text-sm md:text-lg lg:text-[1.4rem]">
-          <a href="#about" className="hover:opacity-70 transition-opacity duration-200">About</a>
-          <a href="#price" className="hover:opacity-70 transition-opacity duration-200">Price</a>
-          <a href="#projects" className="hover:opacity-70 transition-opacity duration-200">Projects</a>
-          <a href="#contact" className="hover:opacity-70 transition-opacity duration-200">Contact</a>
-        </nav>
-      </FadeIn>
+    <section id="hero" className="relative flex min-h-screen items-center overflow-hidden">
+      <div className="hero-grid absolute inset-0" aria-hidden="true" />
+      <div className="hero-vignette pointer-events-none absolute inset-0" aria-hidden="true" />
 
-      <div className="flex-1 flex flex-col justify-center overflow-hidden">
-        <FadeIn delay={0.15} y={40} className="w-full text-center">
-          <h1 className="hero-heading font-black uppercase tracking-tight leading-none whitespace-nowrap w-full text-[14vw] sm:text-[15vw] md:text-[16vw] lg:text-[17.5vw] mt-6 sm:mt-4 md:-mt-5">
-            Hi, i&apos;m shaurya
+      <div className="relative z-10 mx-auto grid w-full max-w-7xl items-center gap-16 px-6 pb-28 pt-28 md:px-10 md:pb-24 md:pt-32 lg:grid-cols-2">
+        <motion.div
+          initial={{ opacity: 0, y: 24 }}
+          animate={{ opacity: 1, y: 0 }}
+          transition={{ duration: 0.7, delay: 0.15, ease: [0.25, 0.1, 0.25, 1] }}
+        >
+          <p className="text-[0.7rem] uppercase tracking-[0.35em] text-muted">Building • Learning • Experimenting</p>
+
+          <h1 className="hero-heading mt-5 font-black uppercase leading-none tracking-tight text-[clamp(2.75rem,9vw,6rem)]">
+            {profile.name}
           </h1>
-        </FadeIn>
-      </div>
 
-      <div className="flex justify-between items-end px-6 md:px-10 pb-7 sm:pb-8 md:pb-10 z-20 relative">
-        <FadeIn delay={0.35} y={20}>
-          <p className="text-[#D7E2EA] font-light uppercase tracking-wide leading-snug text-[clamp(0.75rem,1.4vw,1.5rem)] max-w-[160px] sm:max-w-[220px] md:max-w-[260px]">
-            a creative developer driven by crafting striking and unforgettable projects
+          <p className="mt-6 text-subheading font-medium text-primary">
+            <RotatingRole />
           </p>
-        </FadeIn>
-        
-        <FadeIn delay={0.5} y={20}>
-          <ContactButton />
-        </FadeIn>
-      </div>
 
-      <FadeIn delay={0.6} y={30} className="absolute left-1/2 -translate-x-1/2 z-10 w-[280px] sm:w-[360px] md:w-[440px] lg:w-[520px] top-1/2 -translate-y-1/2 sm:top-auto sm:translate-y-0 sm:bottom-0">
-        <Magnet padding={150} strength={3}>
-          <img 
-            src="https://shrug-person-78902957.figma.site/_components/v2/d24c01ad3a56fc65e942a1f501eb73db42d7cf9a/Rectangle_40443.81459862.png" 
-            alt="Jack - 3D Creator" 
-            className="w-full h-auto object-cover"
-          />
-        </Magnet>
-      </FadeIn>
+          <p className="mt-4 max-w-xl text-body text-muted">{profile.tagline}</p>
+
+          <div className="mt-9 flex flex-wrap items-center gap-3">
+            <a
+              href="#projects"
+              className="inline-flex items-center rounded-full bg-accent px-7 py-3 text-sm font-semibold uppercase tracking-widest text-bg transition hover:brightness-110"
+            >
+              Explore My Work
+            </a>
+            {github && (
+              <a
+                href={github.url}
+                target="_blank"
+                rel="noopener noreferrer"
+                className="inline-flex items-center gap-2 rounded-full border border-border px-7 py-3 text-sm uppercase tracking-widest text-primary transition hover:border-accent hover:text-accent"
+              >
+                GitHub
+                <ArrowUpRight className="h-4 w-4" />
+              </a>
+            )}
+          </div>
+        </motion.div>
+
+        <motion.div
+          initial={{ opacity: 0, y: 24 }}
+          animate={{ opacity: 1, y: 0 }}
+          transition={{ duration: 0.7, delay: 0.3, ease: [0.25, 0.1, 0.25, 1] }}
+        >
+          <OrbitingConstellation />
+        </motion.div>
+      </div>
     </section>
   );
 }
