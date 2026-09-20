@@ -3,6 +3,12 @@ export interface ProjectCaseStudy {
   approach?: string;
   stack?: string;
   outcomes?: string;
+  /** Ordered flow of stages for a pipeline-style case study (e.g. GEOShield). */
+  pipeline?: { label: string; detail?: string }[];
+  /** Forecast/impact horizons for pipeline case studies. */
+  horizons?: string[];
+  /** Compact capability list for signal-style case studies (e.g. VISION-CLI). */
+  capabilities?: string[];
 }
 
 export interface Project {
@@ -19,6 +25,8 @@ export interface Project {
   github?: string;
   live?: string;
   accent: string;
+  /** Optional real screenshots. Omit to render the CSS accent block instead. */
+  images?: string[];
   featured: boolean;
   verified: boolean;
   caseStudy?: ProjectCaseStudy;
@@ -44,6 +52,14 @@ export const projects: Project[] = [
     caseStudy: {
       approach:
         "GOES/OMNI/GRASP data → feature engineering → model → forecast with radiation-risk output (45 min / 6 h / 12 h horizons).",
+      pipeline: [
+        { label: "Data sources", detail: "GOES / OMNI / GRASP" },
+        { label: "Feature engineering" },
+        { label: "Model", detail: "Physics-aware ML" },
+        { label: "Forecast", detail: "Energetic electron flux at geostationary orbit" },
+        { label: "Radiation risk" },
+      ],
+      horizons: ["45 min", "6 hours", "12 hours"],
     },
   },
   {
@@ -62,6 +78,15 @@ export const projects: Project[] = [
     featured: true,
     verified: true,
     github: "https://github.com/SHAURYASANYAL3",
+    caseStudy: {
+      approach: "Capability-first CLI published on PyPI (maintainer: SHAURYASANYAL3).",
+      capabilities: [
+        "Leak scanning",
+        "Phishing analysis",
+        "Breach lookup",
+        "AI-generated-media checking",
+      ],
+    },
   },
   {
     id: "e-vara",
