@@ -3,22 +3,26 @@ import { LoadingExperience } from './components/LoadingExperience';
 import { HeroSection } from './sections/HeroSection';
 import { MarqueeSection } from './sections/MarqueeSection';
 import { AboutSection } from './sections/AboutSection';
-import { ServicesSection } from './sections/ServicesSection';
+import { SkillsSection } from './sections/SkillsSection';
 import { ProjectsSection } from './sections/ProjectsSection';
 import { ExperimentsSection } from './sections/ExperimentsSection';
+import { JourneySection } from './sections/JourneySection';
+import { ContactSection } from './sections/ContactSection';
 
 function App() {
   return (
     <>
       <LoadingExperience />
       <FloatingNav />
-      <main className="bg-bg min-h-screen font-sans text-secondary">
+      <main id="main" className="bg-bg min-h-screen font-sans text-secondary">
         <HeroSection />
         <MarqueeSection />
         <AboutSection />
-        <ServicesSection />
+        <SkillsSection />
         <ProjectsSection />
         <ExperimentsSection />
+        <JourneySection />
+        <ContactSection />
       </main>
     </>
   );
