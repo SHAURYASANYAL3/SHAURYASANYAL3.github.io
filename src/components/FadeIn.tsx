@@ -12,7 +12,7 @@ interface FadeInProps {
 }
 
 export function FadeIn({ children, delay = 0, duration = 0.7, x = 0, y = 30, className = '', as = 'div' }: FadeInProps) {
-  const MotionComponent = motion[as as keyof typeof motion] as any;
+  const MotionComponent = motion[as as keyof typeof motion] as typeof motion.div;
 
   return (
     <MotionComponent

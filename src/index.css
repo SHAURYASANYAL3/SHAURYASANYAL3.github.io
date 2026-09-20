@@ -1,24 +1,103 @@
 @import "tailwindcss";
 
 @theme {
+  /* ---- Fonts ---- */
   --font-sans: 'Kanit', sans-serif;
-  --color-background: #0C0C0C;
-  --color-text-light: #D7E2EA;
+  --font-mono: ui-monospace, 'SF Mono', SFMono-Regular, Menlo, Consolas, 'Liberation Mono', monospace;
+
+  /* ---- Surfaces: deep near-black scale ---- */
+  --color-bg: #0C0C0C;
+  --color-surface: #131316;
+  --color-surface-2: #1A1A1F;
+  --color-border: #26262C;
+
+  /* ---- Accent: single restrained icy cyan ---- */
+  --color-accent: #5EEAD4;
+  --color-accent-dim: #2DD4BF;
+
+  /* ---- Text (contrast-tested on #0C0C0C) ---- */
+  --color-primary: #E9EEF2;
+  --color-secondary: #D7E2EA;
+  --color-muted: #8B98A5;
+
+  /* ---- Type scale ---- */
+  --text-display: clamp(2.5rem, 10vw, 10rem);
+  --text-title: clamp(2rem, 6vw, 4rem);
+  --text-heading: clamp(1.5rem, 4vw, 2.75rem);
+  --text-subheading: clamp(1.125rem, 2.4vw, 1.75rem);
+  --text-body: clamp(1rem, 1.8vw, 1.25rem);
+  --text-small: clamp(0.8rem, 1.2vw, 0.95rem);
+
+  /* ---- Radius ---- */
+  --radius-card: 1.5rem;
+  --radius-panel: 2.5rem;
+
+  /* ---- Shadows ---- */
+  --shadow-card: 0 20px 60px -20px rgb(0 0 0 / 0.8);
+  --shadow-glow: 0 0 40px rgb(94 234 212 / 0.15);
 }
 
-* {
-  box-sizing: border-box;
-  margin: 0;
-  padding: 0;
+@layer base {
+  * {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+  }
+
+  html {
+    scroll-behavior: smooth;
+  }
+
+  body {
+    background-color: var(--color-bg);
+    color: var(--color-primary);
+    font-family: var(--font-sans);
+    overflow-x: hidden;
+    -webkit-font-smoothing: antialiased;
+  }
+
+  /* Thick anchored sections clear any fixed nav when scrolled to */
+  section[id] {
+    scroll-margin-top: 4rem;
+  }
+
+  /* Thin dark scrollbar */
+  * {
+    scrollbar-width: thin;
+    scrollbar-color: var(--color-border) var(--color-bg);
+  }
+  ::-webkit-scrollbar {
+    width: 8px;
+    height: 8px;
+  }
+  ::-webkit-scrollbar-track {
+    background: var(--color-bg);
+  }
+  ::-webkit-scrollbar-thumb {
+    background: var(--color-border);
+    border-radius: 9999px;
+  }
+  ::-webkit-scrollbar-thumb:hover {
+    background: var(--color-muted);
+  }
 }
 
-html, body, #root {
-  background-color: #0C0C0C;
-  font-family: 'Kanit', sans-serif;
-  color: #D7E2EA;
-  overflow-x: hidden;
+/* Reduced motion: kill marquee/orbit/keyframe animation and smooth scrolling */
+@media (prefers-reduced-motion: reduce) {
+  html {
+    scroll-behavior: auto;
+  }
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+    scroll-behavior: auto !important;
+  }
 }
 
+/* Header treatments: swap to color tokens when the redesign lands */
 .hero-heading {
   background: linear-gradient(180deg, #646973 0%, #BBCCD7 100%);
   -webkit-background-clip: text;
