@@ -8,4 +8,19 @@ export default defineConfig({
     tailwindcss(),
     react()
   ],
+  build: {
+    rollupOptions: {
+      output: {
+        // Split heavy animation/react vendors out of the app chunk.
+        manualChunks(id) {
+          if (id.includes('framer-motion') || id.includes('motion-dom') || id.includes('motion-utils')) {
+            return 'framer-motion';
+          }
+          if (id.includes('node_modules/react')) {
+            return 'react';
+          }
+        },
+      },
+    },
+  },
 })

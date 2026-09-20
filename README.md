@@ -1,73 +1,63 @@
-# React + TypeScript + Vite
+# fool-portfolio
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+Personal portfolio for **Shaurya Sanyal** — Cybersecurity / AI / Full-Stack.
+Built with **React 19 + Vite + Tailwind CSS v4 + Framer Motion**, and
+deployed as a static site.
 
-Currently, two official plugins are available:
+## Commands
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react) uses [Oxc](https://oxc.rs)
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react-swc) uses [SWC](https://swc.rs/)
-
-## React Compiler
-
-The React Compiler is not enabled on this template because of its impact on dev & build performances. To add it, see [this documentation](https://react.dev/learn/react-compiler/installation).
-
-## Expanding the ESLint configuration
-
-If you are developing a production application, we recommend updating the configuration to enable type-aware lint rules:
-
-```js
-export default defineConfig([
-  globalIgnores(['dist']),
-  {
-    files: ['**/*.{ts,tsx}'],
-    extends: [
-      // Other configs...
-
-      // Remove tseslint.configs.recommended and replace with this
-      tseslint.configs.recommendedTypeChecked,
-      // Alternatively, use this for stricter rules
-      tseslint.configs.strictTypeChecked,
-      // Optionally, add this for stylistic rules
-      tseslint.configs.stylisticTypeChecked,
-
-      // Other configs...
-    ],
-    languageOptions: {
-      parserOptions: {
-        project: ['./tsconfig.node.json', './tsconfig.app.json'],
-        tsconfigRootDir: import.meta.dirname,
-      },
-      // other options...
-    },
-  },
-])
+```bash
+npm install        # install dependencies
+npm run dev        # start the dev server
+npm run build      # type-check (tsc) + production build
+npm run lint       # eslint
+npm run preview    # preview the production build locally
 ```
 
-You can also install [eslint-plugin-react-x](https://github.com/Rel1cx/eslint-react/tree/main/packages/plugins/eslint-plugin-react-x) and [eslint-plugin-react-dom](https://github.com/Rel1cx/eslint-react/tree/main/packages/plugins/eslint-plugin-react-dom) for React-specific lint rules:
+## Content editing guide
 
-```js
-// eslint.config.js
-import reactX from 'eslint-plugin-react-x'
-import reactDom from 'eslint-plugin-react-dom'
+All content lives in **`src/data/`** — edit the data, not the components:
 
-export default defineConfig([
-  globalIgnores(['dist']),
-  {
-    files: ['**/*.{ts,tsx}'],
-    extends: [
-      // Other configs...
-      // Enable lint rules for React
-      reactX.configs['recommended-typescript'],
-      // Enable lint rules for React DOM
-      reactDom.configs.recommended,
-    ],
-    languageOptions: {
-      parserOptions: {
-        project: ['./tsconfig.node.json', './tsconfig.app.json'],
-        tsconfigRootDir: import.meta.dirname,
-      },
-      // other options...
-    },
-  },
-])
-```
+| File | Contents |
+|------|----------|
+| `profile.ts` | Name, roles, bio, location, education, email |
+| `projects.ts` | Project & experiment cards, case-study panels |
+| `skills.ts` | Skill clusters (marquee + skills section) |
+| `experience.ts` | Journey timeline entries |
+| `achievements.ts` | Achievement cards |
+| `social.ts` | Social links (contact section + hero GitHub button) |
+| `site.ts` | Site name, URL, nav links |
+
+### Conventions
+
+- **`__PLACEHOLDER__`** — any string set to this value is never rendered
+  (links, emails, images, case-study fields). Replace it with real data;
+  placeholder-free values render as empty/hidden.
+- **`verified: boolean`** — entries with `verified: false` are never
+  rendered anywhere. Flip to `true` to publish an entry.
+- Project cards filter out placeholder technologies; experiment tiles with no
+  real content stay hidden until filled in.
+
+## Adding a real project
+
+1. Open `src/data/projects.ts` and add an entry to `projects`.
+2. Set `verified: true`, `featured` (for the big grid), `kind: 'project'`,
+   status, summary, technologies, and a real `github`/`live` URL.
+3. Optional: drop screenshots in `public/` and reference them with
+   `images: ['/my-project.png']`. Without images the card renders a clean
+   CSS accent block instead.
+4. Add a `caseStudy` object to power the expandable panel (pipeline,
+   horizons, capabilities, or free-form fields).
+
+## Deployment
+
+Static site — `npm run build` outputs `dist/`. Deploy with zero
+configuration on **Vercel** or **Netlify** (build command `npm run build`,
+output `dist`). Placeholder domain: `fool-portfolio.vercel.app`.
+
+## Honest note
+
+Some project details are placeholders pending real data (links, screenshots,
+case-study depth). The site renders everything through `__PLACEHOLDER__` /
+`verified` filters, so nothing fabricated or unverified is shown — no
+invented metrics.

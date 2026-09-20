@@ -1,3 +1,4 @@
+import { SkipLink } from './components/SkipLink';
 import { FloatingNav } from './components/FloatingNav';
 import { LoadingExperience } from './components/LoadingExperience';
 import { HeroSection } from './sections/HeroSection';
@@ -12,6 +13,7 @@ import { ContactSection } from './sections/ContactSection';
 function App() {
   return (
     <>
+      <SkipLink />
       <LoadingExperience />
       <FloatingNav />
       <main id="main" className="bg-bg min-h-screen font-sans text-secondary">

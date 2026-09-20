@@ -41,7 +41,7 @@ export function FloatingNav() {
   const moreItems = site.nav.filter((n) => HIDDEN_ON_MOBILE.has(n.id));
 
   return (
-    <>
+    <header>
       <nav
         aria-label="Primary"
         className="fixed left-1/2 top-5 z-50 hidden -translate-x-1/2 items-center gap-1 rounded-full border border-border bg-surface/70 px-3 py-2 backdrop-blur-md md:flex"
@@ -104,6 +104,6 @@ export function FloatingNav() {
           </div>
         </div>
       </div>
-    </>
+    </header>
   );
 }

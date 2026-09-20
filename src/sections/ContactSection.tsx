@@ -79,7 +79,7 @@ export function ContactSection() {
             <ArrowUp className="h-4 w-4" aria-hidden="true" />
           </a>
         </div>
-        <p className="mt-8 text-center text-[0.65rem] uppercase tracking-[0.2em] text-muted/70">
+        <p className="mt-8 text-center text-[0.65rem] uppercase tracking-[0.2em] text-muted">
           Built with React · Framer Motion · Tailwind
         </p>
       </footer>
