@@ -2,39 +2,48 @@
 
 @theme {
   /* ---- Fonts ---- */
-  --font-sans: 'Kanit', sans-serif;
-  --font-mono: ui-monospace, 'SF Mono', SFMono-Regular, Menlo, Consolas, 'Liberation Mono', monospace;
+  --font-sans: 'Plus Jakarta Sans', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+  --font-mono: 'JetBrains Mono', ui-monospace, 'SF Mono', Menlo, Monaco, Consolas, monospace;
 
-  /* ---- Surfaces: deep near-black scale ---- */
-  --color-bg: #0C0C0C;
-  --color-surface: #131316;
-  --color-surface-2: #1A1A1F;
-  --color-border: #26262C;
+  /* ---- Surfaces: Bioluminescent Obsidian & Midnight Slate ---- */
+  --color-bg: #05070f;
+  --color-surface: #0a0f1d;
+  --color-surface-2: #10172a;
+  --color-surface-card: rgba(13, 19, 36, 0.75);
+  --color-border: #1e293b;
+  --color-border-subtle: rgba(56, 189, 248, 0.15);
+  --color-border-glow: rgba(0, 242, 254, 0.35);
 
-  /* ---- Accent: single restrained icy cyan ---- */
-  --color-accent: #5EEAD4;
-  --color-accent-dim: #2DD4BF;
+  /* ---- Rich Multidimensional Accents ---- */
+  --color-accent: #00f2fe;
+  --color-accent-dim: #38bdf8;
+  --color-accent-indigo: #6366f1;
+  --color-accent-violet: #8b5cf6;
+  --color-accent-emerald: #10b981;
+  --color-accent-amber: #f59e0b;
 
-  /* ---- Text (contrast-tested on #0C0C0C) ---- */
-  --color-primary: #E9EEF2;
-  --color-secondary: #D7E2EA;
-  --color-muted: #8B98A5;
+  /* ---- Text: Eye-Comfort Contrast ---- */
+  --color-primary: #f8fafc;
+  --color-secondary: #cbd5e1;
+  --color-muted: #64748b;
+  --color-faint: #334155;
 
   /* ---- Type scale ---- */
-  --text-display: clamp(2.5rem, 10vw, 10rem);
-  --text-title: clamp(2rem, 6vw, 4rem);
-  --text-heading: clamp(1.5rem, 4vw, 2.75rem);
-  --text-subheading: clamp(1.125rem, 2.4vw, 1.75rem);
-  --text-body: clamp(1rem, 1.8vw, 1.25rem);
-  --text-small: clamp(0.8rem, 1.2vw, 0.95rem);
+  --text-display: clamp(2.5rem, 9vw, 6.5rem);
+  --text-title: clamp(2rem, 5vw, 3.75rem);
+  --text-heading: clamp(1.35rem, 3.5vw, 2.25rem);
+  --text-subheading: clamp(1.05rem, 2vw, 1.5rem);
+  --text-body: clamp(0.95rem, 1.6vw, 1.15rem);
+  --text-small: clamp(0.78rem, 1.1vw, 0.9rem);
 
   /* ---- Radius ---- */
-  --radius-card: 1.5rem;
-  --radius-panel: 2.5rem;
+  --radius-card: 1.25rem;
+  --radius-panel: 2rem;
 
-  /* ---- Shadows ---- */
-  --shadow-card: 0 20px 60px -20px rgb(0 0 0 / 0.8);
-  --shadow-glow: 0 0 40px rgb(94 234 212 / 0.15);
+  /* ---- Shadows & Glows ---- */
+  --shadow-card: 0 10px 40px -15px rgba(0, 0, 0, 0.7);
+  --shadow-glow: 0 0 35px rgba(0, 242, 254, 0.2);
+  --shadow-glow-indigo: 0 0 40px rgba(99, 102, 241, 0.25);
 }
 
 @layer base {
@@ -46,6 +55,7 @@
 
   html {
     scroll-behavior: smooth;
+    background-color: var(--color-bg);
   }
 
   body {
@@ -54,35 +64,36 @@
     font-family: var(--font-sans);
     overflow-x: hidden;
     -webkit-font-smoothing: antialiased;
+    text-rendering: optimizeLegibility;
   }
 
-  /* Thick anchored sections clear any fixed nav when scrolled to */
+  /* Clear sticky nav when scrolling to sections */
   section[id] {
-    scroll-margin-top: 4rem;
+    scroll-margin-top: 5rem;
   }
 
-  /* Thin dark scrollbar */
+  /* Sleek cyber scrollbar */
   * {
     scrollbar-width: thin;
-    scrollbar-color: var(--color-border) var(--color-bg);
+    scrollbar-color: #1e293b #05070f;
   }
   ::-webkit-scrollbar {
-    width: 8px;
-    height: 8px;
+    width: 6px;
+    height: 6px;
   }
   ::-webkit-scrollbar-track {
-    background: var(--color-bg);
+    background: #05070f;
   }
   ::-webkit-scrollbar-thumb {
-    background: var(--color-border);
+    background: #1e293b;
     border-radius: 9999px;
   }
   ::-webkit-scrollbar-thumb:hover {
-    background: var(--color-muted);
+    background: #38bdf8;
   }
 }
 
-/* Reduced motion: kill marquee/orbit/keyframe animation and smooth scrolling */
+/* Reduced motion accessibility */
 @media (prefers-reduced-motion: reduce) {
   html {
     scroll-behavior: auto;
@@ -97,45 +108,76 @@
   }
 }
 
-/* Visible keyboard focus everywhere controls live (nav, buttons, links) */
+/* Visible keyboard focus state */
 :focus-visible {
   outline: 2px solid var(--color-accent);
   outline-offset: 3px;
-  border-radius: 0.25rem;
+  border-radius: 0.375rem;
 }
 
-/* ---- Hero: name gradient + subtle grid/vignette background ---- */
+/* Kinetic Gradient Text Shimmer */
 .hero-heading {
-  background: linear-gradient(180deg, color-mix(in srgb, var(--color-muted) 55%, var(--color-primary)) 0%, var(--color-primary) 100%);
+  background: linear-gradient(135deg, #ffffff 0%, #cbd5e1 40%, #38bdf8 75%, #818cf8 100%);
   -webkit-background-clip: text;
   -webkit-text-fill-color: transparent;
   background-clip: text;
 }
 
+.text-shimmer {
+  background: linear-gradient(90deg, #38bdf8 0%, #818cf8 25%, #34d399 50%, #38bdf8 100%);
+  background-size: 200% auto;
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  animation: text-shimmer-anim 6s linear infinite;
+}
+
+@keyframes text-shimmer-anim {
+  to {
+    background-position: 200% center;
+  }
+}
+
+/* Background Cyber Grid & Aurora Vignette */
 .hero-grid {
   background-image:
-    linear-gradient(to right, color-mix(in srgb, var(--color-border) 45%, transparent) 1px, transparent 1px),
-    linear-gradient(to bottom, color-mix(in srgb, var(--color-border) 45%, transparent) 1px, transparent 1px);
-  background-size: 4rem 4rem;
-  -webkit-mask-image: radial-gradient(ellipse 85% 70% at 50% 35%, black 20%, transparent 75%);
-  mask-image: radial-gradient(ellipse 85% 70% at 50% 35%, black 20%, transparent 75%);
+    linear-gradient(to right, rgba(56, 189, 248, 0.07) 1px, transparent 1px),
+    linear-gradient(to bottom, rgba(56, 189, 248, 0.07) 1px, transparent 1px);
+  background-size: 3.5rem 3.5rem;
+  -webkit-mask-image: radial-gradient(ellipse 80% 60% at 50% 30%, black 20%, transparent 80%);
+  mask-image: radial-gradient(ellipse 80% 60% at 50% 30%, black 20%, transparent 80%);
 }
 
 .hero-vignette {
   background: radial-gradient(ellipse at center, transparent 0%, var(--color-bg) 85%);
 }
 
-/* ---- Loading overlay progress line ---- */
+/* Glowing Border Card Effect */
+.glow-card {
+  position: relative;
+  background: var(--color-surface-card);
+  border: 1px solid rgba(56, 189, 248, 0.15);
+  backdrop-filter: blur(16px);
+  -webkit-backdrop-filter: blur(16px);
+  transition: all 0.3s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+.glow-card:hover {
+  border-color: rgba(0, 242, 254, 0.45);
+  box-shadow: 0 0 30px rgba(0, 242, 254, 0.12), 0 20px 40px -15px rgba(0, 0, 0, 0.8);
+  transform: translateY(-2px);
+}
+
+/* Loading progress bar */
 @keyframes load-progress {
   from { transform: scaleX(0); }
   to { transform: scaleX(1); }
 }
 .load-progress-line {
   transform-origin: left;
-  animation: load-progress 800ms cubic-bezier(0.25, 0.1, 0.25, 1) forwards;
+  animation: load-progress 750ms cubic-bezier(0.16, 1, 0.3, 1) forwards;
 }
 
-/* ---- Text marquee (skills) ---- */
+/* Seamless text marquee */
 @keyframes marquee-x {
   from { transform: translateX(0); }
   to { transform: translateX(-50%); }
@@ -143,80 +185,9 @@
 .marquee-track {
   display: flex;
   width: max-content;
-  animation: marquee-x 32s linear infinite;
+  animation: marquee-x 30s linear infinite;
   will-change: transform;
 }
 .marquee:hover .marquee-track {
   animation-play-state: paused;
-}
-
-/* ---- Orbiting constellation (3D CSS, no canvas/WebGL) ---- */
-.orbit-wrapper { perspective: 900px; }
-.orbit-scene {
-  position: absolute;
-  inset: 0;
-  transform-style: preserve-3d;
-  transition: transform 200ms ease-out;
-  will-change: transform;
-}
-.orbit-plane {
-  position: absolute;
-  inset: 0;
-  transform: rotateX(62deg);
-  transform-style: preserve-3d;
-}
-.orbit-ring {
-  position: absolute;
-  top: 50%;
-  left: 50%;
-  transform-style: preserve-3d;
-  animation: orbit-rotate 26s linear infinite;
-}
-@keyframes orbit-rotate {
-  from { transform: rotateZ(0deg); }
-  to { transform: rotateZ(360deg); }
-}
-.orbit-node {
-  position: absolute;
-  transform-style: preserve-3d;
-}
-.orbit-chip {
-  display: inline-flex;
-  align-items: center;
-  white-space: nowrap;
-  padding: 0.35rem 0.8rem;
-  border: 1px solid var(--color-border);
-  border-radius: 9999px;
-  background: color-mix(in srgb, var(--color-surface) 80%, transparent);
-  color: var(--color-muted);
-  font-size: 0.72rem;
-  letter-spacing: 0.1em;
-  text-transform: uppercase;
-  transform: rotate(var(--r)) rotateX(-62deg);
-  transition: transform 200ms ease, color 200ms ease, border-color 200ms ease, box-shadow 200ms ease;
-  box-shadow: 0 0 0 rgb(94 234 212 / 0);
-  cursor: default;
-}
-.orbit-chip:hover {
-  transform: rotate(var(--r)) rotateX(-62deg) translateZ(44px);
-  color: var(--color-accent);
-  border-color: color-mix(in srgb, var(--color-accent) 45%, var(--color-border));
-  box-shadow: var(--shadow-glow);
-}
-.orbit-center {
-  position: absolute;
-  top: 50%;
-  left: 50%;
-  transform: translate(-50%, -50%) rotateX(-62deg);
-  display: inline-flex;
-  align-items: center;
-  padding: 0.5rem 1.1rem;
-  border: 1px solid color-mix(in srgb, var(--color-accent) 55%, var(--color-border));
-  border-radius: 9999px;
-  background: color-mix(in srgb, var(--color-accent) 12%, var(--color-surface));
-  color: var(--color-accent);
-  font-size: 0.8rem;
-  font-weight: 600;
-  letter-spacing: 0.14em;
-  text-transform: uppercase;
 }

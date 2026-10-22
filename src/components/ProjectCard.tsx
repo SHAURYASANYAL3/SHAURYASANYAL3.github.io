@@ -14,7 +14,7 @@ interface StatusBadge {
 
 function statusBadge(project: Project): StatusBadge {
   if (!project.verified) {
-    return { label: 'Concept / placeholder', live: false };
+    return { label: 'Concept / prototype', live: false };
   }
   const hasLive = !isPlaceholder(project.live);
   const hasSource = !isPlaceholder(project.github);
@@ -46,7 +46,7 @@ function ProjectLinks({ project, onInspect }: { project: Project; onInspect?: (p
           target="_blank"
           rel="noopener noreferrer"
           onClick={() => soundFx.playClick()}
-          className="inline-flex items-center gap-1.5 rounded-full border border-border px-3.5 py-1.5 text-[0.7rem] font-mono font-medium uppercase tracking-wider text-muted transition-colors hover:border-accent/50 hover:text-accent active:scale-95"
+          className="inline-flex items-center gap-1.5 rounded-full border border-slate-700/80 bg-slate-900/60 px-3.5 py-1.5 text-[0.7rem] font-mono font-medium uppercase tracking-wider text-slate-300 transition-colors hover:border-cyan-400/50 hover:text-cyan-300 active:scale-95"
         >
           <GitBranch className="h-3.5 w-3.5" aria-hidden="true" />
           Source
@@ -59,7 +59,7 @@ function ProjectLinks({ project, onInspect }: { project: Project; onInspect?: (p
           target="_blank"
           rel="noopener noreferrer"
           onClick={() => soundFx.playClick()}
-          className="inline-flex items-center gap-1.5 rounded-full border border-accent/40 bg-accent/10 px-3.5 py-1.5 text-[0.7rem] font-mono font-medium uppercase tracking-wider text-accent transition-colors hover:bg-accent/20 active:scale-95"
+          className="inline-flex items-center gap-1.5 rounded-full border border-emerald-500/40 bg-emerald-500/15 px-3.5 py-1.5 text-[0.7rem] font-mono font-medium uppercase tracking-wider text-emerald-300 transition-colors hover:bg-emerald-500/25 active:scale-95 shadow-[0_0_15px_rgba(16,185,129,0.2)]"
         >
           <ExternalLink className="h-3.5 w-3.5" aria-hidden="true" />
           Live
@@ -82,7 +82,7 @@ export function ProjectCard({ project, featured = false, className = '', onInspe
 
   return (
     <article
-      className={`group relative flex flex-col overflow-hidden rounded-card border border-border bg-surface shadow-card transition-all duration-300 hover:-translate-y-1 hover:border-accent/40 ${
+      className={`group relative flex flex-col overflow-hidden rounded-2xl glow-card ${
         featured ? 'lg:flex-row' : ''
       } ${className}`}
     >
@@ -90,29 +90,31 @@ export function ProjectCard({ project, featured = false, className = '', onInspe
 
       <div className={`flex flex-col gap-4 p-6 md:p-7 ${featured ? 'lg:flex-1' : 'flex-1'}`}>
         <div className="flex items-center justify-between gap-3">
-          <span className="text-[0.7rem] uppercase tracking-[0.25em] text-muted font-mono">{project.category}</span>
+          <span className="text-[0.7rem] uppercase tracking-[0.25em] text-cyan-400/90 font-mono font-semibold">
+            {project.category}
+          </span>
           <span
             className={`inline-flex shrink-0 items-center gap-1.5 rounded-full border px-3 py-1 text-[0.6rem] font-mono font-medium uppercase tracking-[0.18em] ${
-              badge.live ? 'border-accent/40 text-accent bg-accent/5' : 'border-border text-muted'
+              badge.live ? 'border-emerald-500/40 text-emerald-300 bg-emerald-950/40' : 'border-slate-800 text-slate-400 bg-slate-900/60'
             }`}
           >
-            {badge.live && <span aria-hidden="true" className="h-1.5 w-1.5 rounded-full bg-accent animate-pulse" />}
+            {badge.live && <span aria-hidden="true" className="h-1.5 w-1.5 rounded-full bg-emerald-400 animate-pulse" />}
             {badge.label}
           </span>
         </div>
 
-        <h3 className="text-heading font-semibold uppercase leading-tight text-secondary transition-transform duration-300 group-hover:translate-x-1">
+        <h3 className="text-xl sm:text-2xl font-bold uppercase leading-tight text-white transition-transform duration-300 group-hover:translate-x-1 font-sans">
           {project.title}
         </h3>
 
-        <p className="text-small leading-relaxed text-muted">{project.summary}</p>
+        <p className="text-sm leading-relaxed text-slate-300">{project.summary}</p>
 
         {technologies.length > 0 && (
           <div className="flex flex-wrap gap-1.5">
             {technologies.map((technology) => (
               <span
                 key={technology}
-                className="rounded-lg border border-border bg-surface-2 px-2.5 py-1 text-[0.65rem] font-mono uppercase tracking-wider text-muted"
+                className="rounded-lg border border-slate-800/80 bg-slate-900/80 px-2.5 py-1 text-[0.68rem] font-mono uppercase tracking-wider text-slate-400 group-hover:text-slate-300 group-hover:border-slate-700 transition-colors"
               >
                 {technology}
               </span>
@@ -120,7 +122,7 @@ export function ProjectCard({ project, featured = false, className = '', onInspe
           </div>
         )}
 
-        <div className="mt-auto pt-3 border-t border-border/40">
+        <div className="mt-auto pt-4 border-t border-slate-800/60">
           <ProjectLinks project={project} onInspect={onInspect} />
         </div>
       </div>

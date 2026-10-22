@@ -1,6 +1,6 @@
 import { useEffect, useState } from 'react';
 import { AnimatePresence, motion } from 'framer-motion';
-import { ArrowUpRight, Terminal as TerminalIcon, Sparkles, Shield, Cpu, ExternalLink } from 'lucide-react';
+import { ArrowUpRight, Terminal as TerminalIcon, Sparkles, ExternalLink, ShieldCheck, Flame } from 'lucide-react';
 import { profile } from '../data/profile';
 import { socials } from '../data/social';
 import { Hero3DCanvas } from '../components/Hero3DCanvas';
@@ -28,7 +28,7 @@ function RotatingRole() {
           animate={{ y: '0%', opacity: 1 }}
           exit={{ y: '-110%', opacity: 0 }}
           transition={{ duration: 0.35, ease: [0.16, 1, 0.3, 1] }}
-          className="text-transparent bg-clip-text bg-gradient-to-r from-cyan-400 via-teal-300 to-violet-400 font-mono font-bold"
+          className="text-transparent bg-clip-text bg-gradient-to-r from-cyan-300 via-indigo-300 to-emerald-300 font-mono font-bold"
         >
           {profile.roles[index]}
         </motion.span>
@@ -41,9 +41,10 @@ export function HeroSection({ onSelectProject, onOpenTerminal }: HeroSectionProp
   const github = socials.find((s) => s.platform === 'github');
 
   return (
-    <section id="nexus" className="relative flex min-h-screen flex-col justify-center overflow-hidden pt-24 pb-16">
-      {/* Background Ambience */}
-      <div className="pointer-events-none absolute inset-0 bg-[radial-gradient(ellipse_80%_60%_at_50%_-10%,rgba(0,242,254,0.12),transparent_70%)]" />
+    <section id="nexus" className="relative flex min-h-screen flex-col justify-center overflow-hidden pt-28 pb-16">
+      {/* Bioluminescent Ambient Glow Orbs */}
+      <div className="pointer-events-none absolute -top-40 left-1/4 w-[550px] h-[550px] bg-indigo-600/15 blur-[140px] rounded-full" />
+      <div className="pointer-events-none absolute top-1/3 right-10 w-[450px] h-[450px] bg-cyan-500/12 blur-[130px] rounded-full" />
 
       <div className="relative z-10 mx-auto w-full max-w-7xl px-4 sm:px-6 lg:px-8 space-y-12">
         {/* Top Text & Headline Row */}
@@ -55,23 +56,26 @@ export function HeroSection({ onSelectProject, onOpenTerminal }: HeroSectionProp
             className="lg:col-span-7 space-y-6"
           >
             {/* Holographic Verification Pill */}
-            <div className="inline-flex items-center gap-2.5 px-3.5 py-1.5 rounded-full bg-cyan-950/60 border border-cyan-400/30 text-xs font-mono text-cyan-300 shadow-[0_0_20px_rgba(0,242,254,0.15)] backdrop-blur-md">
+            <div className="inline-flex items-center gap-2.5 px-3.5 py-1.5 rounded-full bg-slate-900/80 border border-cyan-400/30 text-xs font-mono text-cyan-300 shadow-[0_0_25px_rgba(0,242,254,0.18)] backdrop-blur-md">
               <span className="relative flex h-2 w-2">
                 <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-cyan-400 opacity-75"></span>
-                <span className="relative inline-flex rounded-full h-2 w-2 bg-cyan-500"></span>
+                <span className="relative inline-flex rounded-full h-2 w-2 bg-cyan-400"></span>
               </span>
-              <span>BITS VIZAG CYBERSECURITY</span>
-              <span className="text-slate-500">•</span>
-              <span className="text-violet-300">MICROSOFT AMBASSADOR</span>
+              <span className="font-semibold tracking-wide">BITS VIZAG CYBERSECURITY</span>
+              <span className="text-slate-600">•</span>
+              <span className="text-indigo-300 flex items-center gap-1">
+                <Flame className="w-3 h-3 text-amber-400" />
+                NSOC 26 TOP 27
+              </span>
             </div>
 
             {/* Title & Alias */}
             <div>
-              <div className="flex items-center gap-3">
-                <h1 className="text-4xl sm:text-6xl lg:text-7xl font-extrabold tracking-tight text-white font-sans uppercase">
+              <div className="flex items-center gap-3 flex-wrap">
+                <h1 className="hero-heading text-4xl sm:text-6xl lg:text-7xl font-extrabold tracking-tight font-sans uppercase">
                   {profile.name}
                 </h1>
-                <span className="px-2.5 py-1 rounded-md bg-slate-900 border border-slate-700/80 text-xs font-mono text-slate-400 font-semibold">
+                <span className="px-3 py-1 rounded-lg bg-slate-900/90 border border-indigo-500/30 text-xs font-mono text-indigo-300 font-bold shadow-[0_0_15px_rgba(99,102,241,0.2)]">
                   {profile.handle}
                 </span>
               </div>
@@ -82,16 +86,16 @@ export function HeroSection({ onSelectProject, onOpenTerminal }: HeroSectionProp
               </div>
             </div>
 
-            <p className="max-w-2xl text-base sm:text-lg text-slate-400 leading-relaxed font-sans">
+            <p className="max-w-2xl text-base sm:text-lg text-slate-300 leading-relaxed font-sans">
               {profile.tagline}
             </p>
 
             {/* Action Buttons */}
             <div className="flex flex-wrap items-center gap-3 pt-2">
               <a
-                href="#systems"
+                href="#projects"
                 onClick={() => soundFx.playClick()}
-                className="inline-flex items-center gap-2 rounded-xl bg-gradient-to-r from-cyan-400 to-teal-400 px-6 py-3 text-xs font-mono font-bold uppercase tracking-wider text-slate-950 transition hover:brightness-110 shadow-[0_0_30px_rgba(0,242,254,0.3)] active:scale-95"
+                className="inline-flex items-center gap-2 rounded-xl bg-gradient-to-r from-cyan-400 via-sky-400 to-indigo-500 px-6 py-3 text-xs font-mono font-bold uppercase tracking-wider text-slate-950 transition-all hover:brightness-115 shadow-[0_0_30px_rgba(56,189,248,0.35)] active:scale-95"
               >
                 <span>Inspect Systems</span>
                 <ArrowUpRight className="h-4 w-4" />
@@ -103,9 +107,9 @@ export function HeroSection({ onSelectProject, onOpenTerminal }: HeroSectionProp
                     soundFx.playTerminal();
                     onOpenTerminal();
                   }}
-                  className="inline-flex items-center gap-2 rounded-xl bg-slate-900/90 border border-cyan-500/40 px-5 py-3 text-xs font-mono font-bold uppercase tracking-wider text-cyan-300 transition hover:bg-cyan-500/15 hover:border-cyan-300 active:scale-95 shadow-[0_0_20px_rgba(0,242,254,0.15)]"
+                  className="inline-flex items-center gap-2 rounded-xl bg-slate-900/90 border border-indigo-500/40 px-5 py-3 text-xs font-mono font-bold uppercase tracking-wider text-indigo-300 transition-all hover:bg-indigo-500/20 hover:border-indigo-400 active:scale-95 shadow-[0_0_25px_rgba(99,102,241,0.2)]"
                 >
-                  <TerminalIcon className="h-4 w-4" />
+                  <TerminalIcon className="h-4 w-4 text-cyan-300" />
                   <span>Launch CLI (~ / `)</span>
                 </button>
               )}
@@ -116,7 +120,7 @@ export function HeroSection({ onSelectProject, onOpenTerminal }: HeroSectionProp
                   target="_blank"
                   rel="noopener noreferrer"
                   onClick={() => soundFx.playClick()}
-                  className="inline-flex items-center gap-2 rounded-xl border border-slate-700/80 bg-slate-900/40 px-5 py-3 text-xs font-mono font-bold uppercase tracking-wider text-slate-300 transition hover:border-slate-500 hover:text-white active:scale-95"
+                  className="inline-flex items-center gap-2 rounded-xl border border-slate-700/80 bg-slate-900/60 px-5 py-3 text-xs font-mono font-bold uppercase tracking-wider text-slate-300 transition-all hover:border-cyan-500/40 hover:text-white active:scale-95"
                 >
                   <span>GitHub</span>
                   <ExternalLink className="h-3.5 w-3.5 text-slate-500" />
@@ -125,7 +129,7 @@ export function HeroSection({ onSelectProject, onOpenTerminal }: HeroSectionProp
             </div>
           </motion.div>
 
-          {/* Quick Stats Grid */}
+          {/* Quick Stats Grid with Glow Cards */}
           <motion.div
             initial={{ opacity: 0, scale: 0.95 }}
             animate={{ opacity: 1, scale: 1 }}
@@ -135,12 +139,13 @@ export function HeroSection({ onSelectProject, onOpenTerminal }: HeroSectionProp
             {profile.stats.map((s, idx) => (
               <div
                 key={idx}
-                className="p-4 rounded-2xl bg-slate-900/50 border border-slate-800/80 backdrop-blur-sm hover:border-cyan-500/40 transition-colors group"
+                className="glow-card p-4 rounded-2xl group"
               >
-                <div className="text-[11px] font-mono uppercase tracking-wider text-slate-500 group-hover:text-cyan-400 transition-colors">
-                  {s.label}
+                <div className="text-[11px] font-mono uppercase tracking-wider text-slate-400 group-hover:text-cyan-300 transition-colors flex items-center justify-between">
+                  <span>{s.label}</span>
+                  <ShieldCheck className="w-3.5 h-3.5 text-cyan-500/60 opacity-0 group-hover:opacity-100 transition-opacity" />
                 </div>
-                <div className="mt-1 text-2xl font-bold font-mono text-white">
+                <div className="mt-1 text-2xl font-bold font-mono text-white tracking-tight">
                   {s.value}
                 </div>
                 <div className="mt-1 text-[11px] text-slate-400 leading-tight">
