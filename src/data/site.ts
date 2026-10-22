@@ -1,27 +1,27 @@
-export interface NavLink {
+export interface NavItem {
   id: string;
   label: string;
 }
 
 export interface SiteConfig {
-  nav: NavLink[];
-  siteName: string;
-  siteUrl: string;
+  name: string;
+  domain: string;
   copyrightName: string;
+  nav: NavItem[];
 }
 
-export const site = {
-  // Nav ids are the real section ids. skills/lab/journey/contact are created by Tasks 4-5.
+export const site: SiteConfig = {
+  name: "Shaurya Sanyal",
+  domain: "shauryasanyal3.github.io",
+  copyrightName: "Shaurya Sanyal (Mr Fool)",
   nav: [
-    { id: "hero", label: "HOME" },
-    { id: "projects", label: "WORK" },
-    { id: "about", label: "ABOUT" },
-    { id: "skills", label: "SKILLS" },
-    { id: "lab", label: "LAB" },
-    { id: "journey", label: "JOURNEY" },
-    { id: "contact", label: "CONTACT" },
+    { id: "nexus", label: "3D Nexus" },
+    { id: "about", label: "About" },
+    { id: "projects", label: "Systems" },
+    { id: "skills", label: "Skills" },
+    { id: "journey", label: "Journey" },
+    { id: "contact", label: "Transmit" },
   ],
-  siteName: "Shaurya Sanyal",
-  siteUrl: "https://fool-portfolio.vercel.app",
-  copyrightName: "Shaurya Sanyal",
-} as const satisfies SiteConfig;
+};
+
+export const siteConfig = site;

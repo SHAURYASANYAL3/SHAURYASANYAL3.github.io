@@ -4,6 +4,7 @@ import tailwindcss from '@tailwindcss/vite'
 
 // https://vitejs.dev/config/
 export default defineConfig({
+  base: './',
   plugins: [
     tailwindcss(),
     react()
@@ -11,8 +12,10 @@ export default defineConfig({
   build: {
     rollupOptions: {
       output: {
-        // Split heavy animation/react vendors out of the app chunk.
         manualChunks(id) {
+          if (id.includes('three')) {
+            return 'three';
+          }
           if (id.includes('framer-motion') || id.includes('motion-dom') || id.includes('motion-utils')) {
             return 'framer-motion';
           }

@@ -1,61 +1,102 @@
 export interface AchievementEntry {
   title: string;
-  context: string;
-  year?: string;
+  organization: string;
+  category: "Recognition" | "Certification" | "Competition" | "Fellowship";
+  year: string;
+  highlight: string;
+  badge?: string;
   verified: boolean;
 }
 
 export const achievements: AchievementEntry[] = [
   {
-    title: "RTIH AP Future Founders Program",
-    context: "Represented BITS Visakhapatnam.",
+    title: "NSOC 26 Top 27 Finalist (E-Vara)",
+    organization: "National Summer of Code 2026",
+    category: "Competition",
+    year: "2026",
+    highlight: "Ranked 27th out of 125 nationwide open-source engineering submissions for E-VARA.",
+    badge: "National Finalist",
+    verified: true,
+  },
+  {
+    title: "Future Founder Fellowship",
+    organization: "Ratan Tata Innovation Hub (RTIH) AP",
+    category: "Fellowship",
+    year: "2026",
+    highlight: "Selected as Future Founder representing BITS Visakhapatnam in startup incubation.",
+    badge: "Fellow",
     verified: true,
   },
   {
     title: "Microsoft Learn Student Ambassador",
-    context: "Joined and completed Microsoft Learn badges.",
+    organization: "Microsoft",
+    category: "Recognition",
+    year: "2025-2026",
+    highlight: "Appointed global Student Ambassador; completed specialized Microsoft AI and Cloud learning tracks.",
+    badge: "MLSA",
     verified: true,
   },
   {
-    title: "Elite Coders Summer of Code 2026",
-    context: "MediFlow selected for the program.",
-    year: "2026",
+    title: "Supervised Machine Learning: Regression & Classification",
+    organization: "DeepLearning.AI / Andrew Ng",
+    category: "Certification",
+    year: "2025",
+    highlight: "Mastered linear/logistic regression, loss function optimization, gradient descent, and regularization.",
+    badge: "DeepLearning.AI",
     verified: true,
   },
   {
-    title: "C/C++ Certification",
-    context: "Programming certification in C and C++.",
+    title: "Advanced Learning Algorithms (Neural Networks & Trees)",
+    organization: "DeepLearning.AI + Stanford University",
+    category: "Certification",
+    year: "2025",
+    highlight: "Trained multi-layer perceptrons, TensorFlow neural architectures, decision trees, and ensemble forests.",
+    badge: "Stanford / DL.AI",
     verified: true,
   },
   {
-    title: "HackerRank Python",
-    context: "Python skill certification.",
+    title: "Unsupervised Learning, Recommenders & Reinforcement Learning",
+    organization: "DeepLearning.AI",
+    category: "Certification",
+    year: "2025",
+    highlight: "Implemented clustering (K-Means), anomaly detection, collaborative filtering recommenders, and Q-learning.",
+    badge: "DeepLearning.AI",
     verified: true,
   },
   {
-    title: "HackerRank SQL",
-    context: "SQL skill certification.",
+    title: "Cyber Job Simulation (Threat Analysis & Defense)",
+    organization: "Deloitte Australia / Forage",
+    category: "Certification",
+    year: "2025",
+    highlight: "Executed forensic threat hunting, breach containment protocols, and executive cybersecurity reporting.",
+    badge: "Deloitte Cyber",
     verified: true,
   },
   {
-    title: "Deloitte / Forage Job Simulations",
-    context: "Completed job simulations.",
+    title: "Data Analytics & Technology Consulting Simulations",
+    organization: "Deloitte Australia / Forage",
+    category: "Certification",
+    year: "2025",
+    highlight: "Business intelligence modeling, technical roadmap architecture, and stakeholder strategy.",
+    badge: "Deloitte Tech",
     verified: true,
   },
   {
-    title: "Microsoft Learn Badges",
-    context: "Completed Microsoft Learn learning paths.",
+    title: "Coding for Everyone: C and C++ Specialization",
+    organization: "University of California, Santa Cruz",
+    category: "Certification",
+    year: "2024",
+    highlight: "Rigorous systems programming: pointers, memory layout, structured programming in C and modern C++.",
+    badge: "UC Santa Cruz",
     verified: true,
   },
-  // Unverified seeds — render-time filters can demonstrate hiding placeholders.
   {
-    title: "__PLACEHOLDER__",
-    context: "New milestone — details pending.",
-    verified: false,
-  },
-  {
-    title: "__PLACEHOLDER__",
-    context: "New milestone — details pending.",
-    verified: false,
+    title: "HackerRank Certified: Python & SQL (Intermediate)",
+    organization: "HackerRank",
+    category: "Certification",
+    year: "2024",
+    highlight: "Verified algorithmic fluency in Python and complex relational query design in SQL.",
+    badge: "HackerRank",
+    verified: true,
   },
 ];
